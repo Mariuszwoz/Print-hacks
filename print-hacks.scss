@@ -1,0 +1,53 @@
+@media print and (min--moz-device-pixel-ratio:0) {
+    // Target printer in firefox only.
+}
+
+@media print {
+    // Add !important if something does not work in print - it may help.
+    
+    // Hide margins on page and auto header/footer in firefox.
+    @page {
+        size: A4;
+        margin: 0; 
+    }
+
+    html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    // Force colors.
+    html, body {
+        background-color: darkcyan !important;
+        color: white !important;
+
+        color-adjust: exact !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;
+
+        *{ color-adjust: exact !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    }
+
+    // Another hack for background color.
+    .class {
+        box-shadow: inset 0 0 0 10000px gold !important;
+    }
+
+    // page-break-before, page-break-after and page-break-inside only work with non-floated elements and block/inline-block.
+    // Flex and grid is not well supported for print.
+    body {
+        * {
+            float: none !important;
+            display: block !important;
+        }
+    }
+
+    // Use pt instead of px for font. Use mm/cm for width, height instead of px.
+    body {
+        font-size: 16pt;
+
+        .class {
+           width: 2cm;
+           height: 2cm; 
+        }
+    }
+}
